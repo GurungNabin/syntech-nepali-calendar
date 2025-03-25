@@ -1,4 +1,4 @@
-library;
+library syntech_nepali_calendar;
 
 export 'src/language.dart';
 export 'src/nepali_date_format.dart';
