@@ -1,0 +1,20 @@
+                        -H/home/nabin/Downloads/flutter_linux_3.24.5-stable/flutter/packages/flutter_tools/gradle/src/main/groovy
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=21
+-DANDROID_PLATFORM=android-21
+-DANDROID_ABI=x86
+-DCMAKE_ANDROID_ARCH_ABI=x86
+-DANDROID_NDK=/home/nabin/Android/Sdk/ndk/26.3.11579264
+-DCMAKE_ANDROID_NDK=/home/nabin/Android/Sdk/ndk/26.3.11579264
+-DCMAKE_TOOLCHAIN_FILE=/home/nabin/Android/Sdk/ndk/26.3.11579264/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/home/nabin/Android/Sdk/cmake/3.22.1/bin/ninja
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/home/nabin/Downloads/syntech_nepali_calendar/example/build/app/intermediates/cxx/Debug/2xw2n21v/obj/x86
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/home/nabin/Downloads/syntech_nepali_calendar/example/build/app/intermediates/cxx/Debug/2xw2n21v/obj/x86
+-DCMAKE_BUILD_TYPE=Debug
+-B/home/nabin/Downloads/syntech_nepali_calendar/example/android/app/.cxx/Debug/2xw2n21v/x86
+-GNinja
+-Wno-dev
+--no-warn-unused-cli
+                        Build command args: []
+                        Version: 2

@@ -1,0 +1,2 @@
+/home/nabin/Downloads/syntech_nepali_calendar/example/android/app/.cxx/Debug/2xw2n21v/x86_64/CMakeFiles/edit_cache.dir
+/home/nabin/Downloads/syntech_nepali_calendar/example/android/app/.cxx/Debug/2xw2n21v/x86_64/CMakeFiles/rebuild_cache.dir
