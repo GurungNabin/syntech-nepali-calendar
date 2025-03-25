@@ -7,15 +7,6 @@
 
 Material and Cupertino Styled Date Picker, Date Range Picker and Calendar with Bikram Sambat(Nepali) Support.
 
-![Loading Demo](demo.gif)
-
-Nepali Date Picker returns data in **NepaliDateTime** type, which is
-included in [*nepali_utils*](https://pub.dev/packages/nepali_utils)
-package.
-
-[**Click here to launch WEB DEMO**](https://sarbagyastha.com.np/nepali_date_picker)
-
-![Loading Demo](screenshot/picker.png) ![Loading Demo](screenshot/calendar.png)
 
 ### Salient Features
 * Material DatePicker
@@ -44,7 +35,7 @@ NepaliDateTime _selectedDateTime = await picker.showMaterialDatePicker(
     initialDatePickerMode: DatePickerMode.day,
 );
 
-print(_selectedDateTime); // 2076-02-16T00:00:00
+print(_selectedDateTime);
 ```
 
 #### Cupertino Style Date Picker
@@ -72,20 +63,20 @@ NepaliDateTime _selectedDateTime = await picker.showAdaptiveDatePicker(
     firstDate: NepaliDateTime(2000),
     lastDate: NepaliDateTime(2090),
     language: _language,
-    dateOrder: _dateOrder, // for iOS only
-    initialDatePickerMode: DatePickerMode.day, // for platform except iOS
+    dateOrder: _dateOrder, 
+    initialDatePickerMode: DatePickerMode.day, 
 );
 ```
 
 #### Calender Picker
 Shows Calendar, can be used for showing events.
 ```dart
-CalendarDatePicker(
+NepaliCalendarDatePicker(
     initialDate: NepaliDateTime.now(),
     firstDate: NepaliDateTime(2070),
     lastDate: NepaliDateTime(2090),
     onDateChanged: (date) => _selectedDate.value = date,
-    dayBuilder: (dayToBuild) { // Optional
+    dayBuilder: (dayToBuild) { 
       return Center(
                 child: Text(
                     '${dayToBuild.day}',
@@ -93,42 +84,33 @@ CalendarDatePicker(
                ),
           ),
       },
-     selectedDayDecoration: BoxDecoration ( // Optional
-            color: Colors.deepOrange,
-            shape: BoxShape.circle,
-     ),
-     todayDecoration: BoxDecoration ( // Optional
-            gradient: LinearGradient(colors: [Colors.yellow, Colors.orange]),
-            shape: BoxShape.circle,
-     ),
-};
+     selectedDayDecoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              todayDecoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: Colors.purple,
+                  width: 1,
+                ),
+              ),
+);
 ```
 
-## Screenshots
-
-***Material Design*** (Portrait)
-
-![Portrait Screenshot](screenshot/portrait.png)
-
-***Material Design*** (Landscape)
-
-![Landscape Screenshot](screenshot/landscape.png)
-
-***Cupertino Design***
-
-![Cupertino English](screenshot/cupertino_en.jpg)
-
-![Cupertino Nepali](screenshot/cupertino_np.jpg)
 
 ## Example
 
-[Detailed Example](https://github.com/sarbagyastha/nepali_date_picker/tree/master/example)
+
 
 
 ## License
 
 ```
-Copyright 2020 Sarbagya Dhaubanjar. All rights reserved.
+Copyright 2025 Nabin Gurung and Ghan Bahadur Pun. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
