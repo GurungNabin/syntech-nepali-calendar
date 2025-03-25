@@ -1,4 +1,4 @@
-# Nepali Calendar Utils
+# Syntech Nepali Calendar
 
 [![Pub Package](https://img.shields.io/pub/v/nepali_calendar_utils)](https://pub.dev/packages/nepali_calendar_utils)
 [![Licence](https://img.shields.io/badge/Licence-MIT-orange.svg)](https://github.com/yourusername/nepali_calendar_utils/blob/master/LICENSE)
@@ -21,7 +21,7 @@ Add this dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  nepali_calendar_utils: ^0.0.1
+  syntech_nepali_calendar: ^0.0.1
 ```
 
 Then run:
@@ -32,38 +32,85 @@ flutter pub get
 
 ## Usage
 
-### Convert AD to BS
-```dart
-import 'package:nepali_calendar_utils/nepali_calendar_utils.dart';
+#### Material Style Date Picker
 
-void main() {
-  NepaliDateTime nepaliDate = NepaliDateTime.fromDateTime(DateTime(2025, 3, 25));
-  print(nepaliDate); 
-}
-```
-
-### Convert BS to AD
-```dart
-NepaliDateTime bsDate = NepaliDateTime(2081, 12, 12);
-DateTime adDate = bsDate.toDateTime();
-print(adDate); 
-```
-
-### Show a Material Date Picker
 ```dart
 import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
 
-Future<void> pickDate(BuildContext context) async {
-  NepaliDateTime selectedDate = await picker.showMaterialDatePicker(
+NepaliDateTime _selectedDateTime = await picker.showMaterialDatePicker(
     context: context,
     initialDate: NepaliDateTime.now(),
     firstDate: NepaliDateTime(2000),
     lastDate: NepaliDateTime(2090),
-  );
+    initialDatePickerMode: DatePickerMode.day,
+);
 
-  print(selectedDate);
-}
+print(_selectedDateTime); 
 ```
+
+#### Cupertino Style Date Picker
+```dart
+picker.showCupertinoDatePicker(
+    context: context,
+    initialDate: NepaliDateTime.now(),
+    firstDate: NepaliDateTime(2000),
+    lastDate: NepaliDateTime(2090),
+    language: _language,
+    dateOrder: _dateOrder,
+    onDateChanged: (newDate) {
+        print(_selectedDateTime);
+    },
+);
+```
+
+#### Adaptive Date Picker
+Shows DatePicker based on Platform. 
+*i.e. Cupertino DatePicker will be shown on iOS while Material on Android and Fuchsia.*
+```dart
+NepaliDateTime _selectedDateTime = await picker.showAdaptiveDatePicker(
+    context: context,
+    initialDate: NepaliDateTime.now(),
+    firstDate: NepaliDateTime(2000),
+    lastDate: NepaliDateTime(2090),
+    language: _language,
+    dateOrder: _dateOrder, 
+    initialDatePickerMode: DatePickerMode.day, 
+);
+```
+
+#### Calender Picker
+Shows Calendar, can be used for showing events.
+```dart
+NepaliCalendarDatePicker(
+    initialDate: NepaliDateTime.now(),
+    firstDate: NepaliDateTime(2070),
+    lastDate: NepaliDateTime(2090),
+    onDateChanged: (date) => _selectedDate.value = date,
+    dayBuilder: (dayToBuild) { 
+      return Center(
+                child: Text(
+                    '${dayToBuild.day}',
+                    style: Theme.of(context).textTheme.caption,
+               ),
+          ),
+      },
+     selectedDayDecoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              todayDecoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: Colors.purple,
+                  width: 1,
+                ),
+              ),
+);
+```
+
 
 ## Example Project
 An example project is included in the [`example/`](https://github.com/GurungNabin/syntech-nepali-calendar/tree/main/example) directory to demonstrate the usage of this package.
