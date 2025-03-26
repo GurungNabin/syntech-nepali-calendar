@@ -1,11 +1,16 @@
-
-
 import 'language.dart';
 import 'nepali_date_time.dart';
 import 'nepali_unicode.dart';
 import 'nepali_utils.dart';
 
+/// A class to calculate the moment between two dates in Nepali or English.
 class NepaliMoment {
+  /// Calculates the moment between the given [date] and the [referenceDate].
+  /// If [showToday] is set to `true`, the result will include 'today' or 'आज'.
+  /// Returns the calculated moment as a string.
+  /// - [date]: The date to calculate the moment for.
+  /// - [referenceDate]: The reference date to calculate the moment from.
+  /// - [showToday]: If true, includes 'today' or 'आज' in the result.
   static String fromBS(
     NepaliDateTime date, {
     NepaliDateTime? referenceDate,
@@ -14,6 +19,12 @@ class NepaliMoment {
     return _calc(date, referenceDate ?? NepaliDateTime.now(), showToday);
   }
 
+  /// Calculates the moment between the given [date] and the [referenceDate].
+  /// If [showToday] is set to `true`, the result will include 'today' or 'आज'.
+  /// Returns the calculated moment as a string.
+  /// - [date]: The date to calculate the moment for.
+  /// - [referenceDate]: The reference date to calculate the moment from.
+  /// - [showToday]: If true, includes 'today' or 'आज' in the result.
   static String fromAD(
     DateTime date, {
     DateTime? referenceDate,
@@ -22,6 +33,8 @@ class NepaliMoment {
     return _calc(date, referenceDate ?? DateTime.now(), showToday);
   }
 
+  /// Calculates the moment between the given [date] and the [referenceDate].
+  /// If [showToday] is set to `true`, the result will include 'today' or 'आज'.
   static String _calc(DateTime date, DateTime referenceDate, bool showToday) {
     final elapsedDuration = referenceDate.difference(date);
     final elapsed = elapsedDuration.inMilliseconds;
@@ -69,6 +82,9 @@ class NepaliMoment {
   }
 }
 
+/// Returns the Nepali moment string with the given [number] and [label].
+/// - [number]: The number to convert to Nepali Unicode.
+/// - [label]: The label to append to the number.
 String _nepaliMoment(int number, String label) {
   return '${NepaliUnicode.convert(number.toString())} $label';
 }

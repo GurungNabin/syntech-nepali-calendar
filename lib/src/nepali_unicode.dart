@@ -1,6 +1,14 @@
-
+/// A utility class for converting Romanized Nepali text into Nepali Unicode text.
 class NepaliUnicode {
   static String _text = '';
+
+  /// Converts the given Romanized Nepali [text] into Nepali Unicode.
+  ///
+  /// If [live] is set to `true`, the conversion is performed in real-time
+  /// for the entire input text. Otherwise, the conversion is performed
+  /// character by character.
+  ///
+  /// Returns the converted Nepali Unicode string.
   static String convert(String text, {bool live = false}) {
     if (live) {
       return _unicode(text);
@@ -16,6 +24,11 @@ class NepaliUnicode {
     return _text;
   }
 
+  /// Converts the given [data] into Nepali Unicode by applying a series
+  /// of character replacements.
+  ///
+  /// This method is used internally by the [convert] method to perform
+  /// the actual conversion logic.
   static String _unicode(String data) {
     _text = data;
     _replace('a', '\u0905');
@@ -184,10 +197,18 @@ class NepaliUnicode {
     return _text;
   }
 
+  /// Replaces all occurrences of the character [x] in the current text
+  /// with the Unicode character [y].
+  ///
+  /// This method is used internally to perform character-level replacements.
   static void _replace(String x, String y) {
     _text = _text.replaceAll(x, String.fromCharCodes(Runes(y)));
   }
 
+  /// Replaces all occurrences of the Unicode sequence [x] in the current text
+  /// with the Unicode sequence [y].
+  ///
+  /// This method is used internally to handle multi-character replacements.
   static void _replaceRunes(String x, String y) {
     _text = _text.replaceAll(
       String.fromCharCodes(Runes(x)),

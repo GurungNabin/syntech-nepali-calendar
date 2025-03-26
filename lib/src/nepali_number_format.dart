@@ -2,7 +2,20 @@ import 'language.dart';
 import 'nepali_unicode.dart';
 import 'nepali_utils.dart';
 
+/// A class to format numbers in Nepali style, with support for monetary values
+/// and conversion to words in Nepali or English.
 class NepaliNumberFormat {
+  /// Creates an instance of [NepaliNumberFormat].
+  ///
+  /// - [inWords]: If true, formats the number in words.
+  /// - [isMonetory]: If true, adds a monetary symbol to the formatted number.
+  /// - [decimalDigits]: Number of decimal digits to include.
+  /// - [symbol]: The monetary symbol to use (e.g., Rs, $).
+  /// - [symbolOnLeft]: If true, places the symbol on the left of the number.
+  /// - [delimiter]: The delimiter to use for grouping digits (default is `,`).
+  /// - [spaceBetweenAmountAndSymbol]: If true, adds a space between the amount and the symbol.
+  /// - [includeDecimalIfZero]: If true, includes decimal digits even if they are zero.
+  /// - [language]: The language to use for formatting (default is the system language).
   NepaliNumberFormat({
     this.inWords = false,
     this.isMonetory = false,
@@ -15,24 +28,37 @@ class NepaliNumberFormat {
     Language? language,
   }) : _lang = language ?? NepaliUtils().language;
 
+  /// Formats the given [number] according to the specified options.
   final bool inWords;
 
+  /// The language to use for formatting.
   final Language _lang;
 
+  /// If true, formats the number as a monetary value.
   final bool isMonetory;
 
+  /// Number of decimal digits to include.
   final int? decimalDigits;
 
+  /// The monetary symbol to use.
   final String? symbol;
 
+  /// The delimiter to use for grouping digits.
   final String delimiter;
 
+  /// If true, places the symbol on the left of the number.
   final bool symbolOnLeft;
 
+  /// If true, adds a space between the amount and the symbol.
   final bool spaceBetweenAmountAndSymbol;
 
+  /// If true, includes decimal digits even if they are zero.
   final bool includeDecimalIfZero;
 
+  /// Formats the given [number] according to the specified options.
+  /// If [number] is `null`, returns an empty string.
+  /// - [number]: The number to format. It can be of type `String`, `int`, or `double`.
+  /// - Returns: The formatted number as a string.
   String format<T extends Object>(T? number) {
     if (number == null) return '';
     if (inWords) {
@@ -46,6 +72,7 @@ class NepaliNumberFormat {
     }
   }
 
+  /// Places the monetary symbol on the left or right of the number.
   String _placeSymbol(String? number) {
     if (number == null) {
       return '';
@@ -59,6 +86,7 @@ class NepaliNumberFormat {
     }
   }
 
+  /// Formats the given [number] in words.
   String _formatInWords<T extends Object>(T number) {
     final numberInWordBuffer = StringBuffer();
     var decimal = '';
@@ -105,6 +133,7 @@ class NepaliNumberFormat {
     return numberInWord.trimRight();
   }
 
+  /// Converts the given [number] to words based on the [index].
   String _digitGroupToWord(int index, String number) {
     switch (index) {
       case 0:
@@ -128,11 +157,13 @@ class NepaliNumberFormat {
     }
   }
 
+  /// Converts the given [number] to the specified language.
   String _languageNumber(String number) =>
       _isEnglish ? number : NepaliUnicode.convert(number);
 
   bool get _isEnglish => _lang == Language.english;
 
+  /// Converts the given [word] to the specified language.
   String _language(String word) {
     switch (word) {
       case 'rupees':
@@ -162,6 +193,7 @@ class NepaliNumberFormat {
     }
   }
 
+  /// Formats the given [number] with commas.
   String _formatWithComma<T extends Object>(T number) {
     var decimalDigits = this.decimalDigits;
     var number0 = '';

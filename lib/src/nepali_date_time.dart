@@ -2,8 +2,13 @@
 import 'language.dart';
 import 'nepali_date_format.dart';
 
+/// A class to represent Nepali date and time.
 extension ENepaliDateTime on DateTime {
 
+  /// Converts the given [DateTime] to [NepaliDateTime].
+  /// Returns the converted [NepaliDateTime].
+  /// - [DateTime]: The date and time to convert.
+  /// - Returns: The converted Nepali date and time.
   NepaliDateTime toNepaliDateTime() {
     const nepalTzOffset = Duration(hours: 5, minutes: 45);
     final now = toUtc().add(nepalTzOffset);
@@ -48,7 +53,9 @@ extension ENepaliDateTime on DateTime {
 }
 
 
+/// A class to represent Nepali date and time.
 class NepaliDateTime implements DateTime {
+  /// Constructs a [NepaliDateTime] instance.
   NepaliDateTime(
     this.year, [
     this.month = 1,
@@ -60,8 +67,13 @@ class NepaliDateTime implements DateTime {
     this.microsecond = 0,
   ]) : assert(year >= 1969 && year <= 2250, 'Supported year is 1970-2250');
 
+  /// Constructs a [NepaliDateTime] instance from the current date and time.
   factory NepaliDateTime.now() => DateTime.now().toNepaliDateTime();
 
+  /// Constructs a [NepaliDateTime] instance from the given [DateTime].
+  /// Returns the converted [NepaliDateTime].
+  /// - [DateTime]: The date and time to convert.
+  /// - Returns: The converted Nepali date and time.
   @Deprecated('Use toNepaliDateTime() instead.')
   factory NepaliDateTime.fromDateTime(DateTime dateTime) {
     return dateTime.toNepaliDateTime();
@@ -96,8 +108,10 @@ class NepaliDateTime implements DateTime {
   List<int> get _englishLeapMonths =>
       [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+  /// Returns the total number of days in the current month.
   int get totalDays => _nepaliYears[year]![month];
 
+  /// Returns the total number of days in the current year.
   int get totalDaysInYear => _nepaliYears[year]!.first;
 
   @override
@@ -111,9 +125,11 @@ class NepaliDateTime implements DateTime {
   bool isBefore(covariant NepaliDateTime nepaliDateTime) =>
       toDateTime().isBefore(nepaliDateTime.toDateTime());
 
+  /// Returns the [NepaliDateTime] with the given [year].
   NepaliDateTime mergeTime(int hour, int minute, int second) =>
       NepaliDateTime(year, month, day, hour, minute, second);
 
+  /// Returns the [NepaliDateTime] with the given [year].
   static NepaliDateTime parse(String formattedString) {
     final re = _parseFormat;
     final Match? match = re.firstMatch(formattedString);
@@ -164,6 +180,7 @@ class NepaliDateTime implements DateTime {
     }
   }
 
+  /// Returns the [NepaliDateTime] with the given [year].
   static NepaliDateTime? tryParse(String formattedString) {
     try {
       return parse(formattedString);
@@ -250,9 +267,11 @@ class NepaliDateTime implements DateTime {
       r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d{1,6}))?)?)?' 
       r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
+  /// Formats the [NepaliDateTime] to a human-readable string.
   String format(String pattern, [Language? language]) =>
       NepaliDateFormat(pattern, language).format(this);
 
+  /// Returns the [DateTime] equivalent of the [NepaliDateTime].
   DateTime toDateTime() {
     var englishYear = 1913;
     var englishMonth = 1;

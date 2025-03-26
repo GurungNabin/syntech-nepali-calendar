@@ -5,100 +5,142 @@ import 'nepali_date_time.dart';
 import 'nepali_unicode.dart';
 import 'nepali_utils.dart';
 
+/// A class to format dates in Nepali style.
 class NepaliDateFormat {
+  /// Creates an instance of [NepaliDateFormat].
+  /// - [pattern]: The pattern to format the date.
+  /// - [language]: The language to use for formatting (default is the system language).
   NepaliDateFormat(
     String pattern, [
     Language? language,
   ]) : _language = language ?? NepaliUtils().language {
     _pattern = pattern;
   }
+
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.d([Language? language]) : this('d', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.E([Language? language]) : this('EE', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.EEEE([Language? language]) : this('EEE', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.LLL([Language? language]) : this('MMM', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.LLLL([Language? language]) : this('MMMM', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.M([Language? language]) : this('M', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.Md([Language? language]) : this('M/d', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.MEd([Language? language]) : this('EE, M/d', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.MMM([Language? language]) : this('MMM', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.MMMd([Language? language]) : this('MMM d', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.MMMEd([Language? language]) : this('EEE, MMM d', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.MMMM([Language? language]) : this('MMMM', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.MMMMd([Language? language]) : this('MMMM d', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.MMMMEEEEd([Language? language])
       : this('EEE, MMMM d', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.QQQ([Language? language]) : this('QQQ', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.QQQQ([Language? language]) : this('QQQQ', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.y([Language? language]) : this('y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yM([Language? language]) : this('y/MM', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yMd([Language? language]) : this('y/MM/dd', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yMEd([Language? language]) : this('EE, y/MM/dd', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yMMM([Language? language]) : this('MMM y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yMMMd([Language? language]) : this('MMM d, y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yMMMEd([Language? language])
       : this('EE, MMM d, y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yMMMM([Language? language]) : this('MMMM y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yMMMMd([Language? language]) : this('MMMM d, y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yMMMMEEEEd([Language? language])
       : this('EEE, MMMM d, y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yQQQ([Language? language]) : this('QQQ y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.yQQQQ([Language? language]) : this('QQQQ y', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.H([Language? language]) : this('H', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.Hm([Language? language]) : this('HH:MM', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.Hms([Language? language]) : this('HH:mm:ss', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.j([Language? language])
       : this(
           language == Language.nepali ? 'aa h' : 'h aa',
           language,
         );
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.jm([Language? language])
       : this(
           language == Language.nepali ? 'aa h:mm' : 'h:mm aa',
           language,
         );
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.jms([Language? language])
       : this(
           language == Language.nepali ? 'aa h:mm:ss' : 'h:mm:ss aa',
           language,
         );
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.m([Language? language]) : this('h', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.ms([Language? language]) : this('hh:mm', language);
 
+  /// Formats the given [date] according to the specified pattern.
   NepaliDateFormat.s([Language? language]) : this('s', language);
   final Language _language;
   late String _pattern;
@@ -106,6 +148,7 @@ class NepaliDateFormat {
   bool _firstRun = true;
   int _index = 0;
 
+  /// Formats the given [date] according to the specified pattern.
   String format(NepaliDateTime date) {
     if (_firstRun) {
       _checkPattern = _pattern;
@@ -140,7 +183,8 @@ class NepaliDateFormat {
     }
     return '';
   }
-
+  
+  /// Parses the given [dateString] and formats it according to the specified pattern.
   String parseAndFormat(String dateString) {
     return format(NepaliDateTime.parse(dateString));
   }

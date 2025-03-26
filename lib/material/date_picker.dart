@@ -19,6 +19,23 @@ const Duration _dialogSizeAnimationDuration = Duration(milliseconds: 200);
 const double _inputFormPortraitHeight = 98.0;
 const double _inputFormLandscapeHeight = 108.0;
 
+/// Displays a Material-style date picker dialog.
+///
+/// This function shows a dialog that allows the user to select a date
+/// using a Nepali calendar. It supports both calendar and input modes
+/// for date selection.
+///
+/// ### Parameters:
+/// - [context]: The build context to display the dialog.
+/// - [initialDate]: The initially selected date in the dialog.
+/// - [firstDate]: The earliest selectable date.
+/// - [lastDate]: The latest selectable date.
+/// - [currentDate]: The current date, defaults to today if not provided.
+///
+/// ### Returns:
+/// A [Future] that resolves to the selected [NepaliDateTime], or `null` if the dialog is dismissed.
+///
+
 Future<NepaliDateTime?> showMaterialDatePicker({
   required BuildContext context,
   required NepaliDateTime initialDate,
@@ -439,7 +456,18 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
   }
 }
 
+
+/// This widget displays the header for the date picker, including help text,
+/// title text, and an optional entry mode toggle button.
 class DatePickerHeader extends StatelessWidget {
+  /// Creates a [DatePickerHeader] widget.
+  /// - [helpText]: The help text displayed at the top of the header.
+  /// - [titleText]: The title text displayed in the header.
+  /// - [titleSemanticsLabel]: An optional semantic label for the title text.
+  /// - [titleStyle]: The style to apply to the title text.
+  /// - [orientation]: The orientation of the header (portrait or landscape).
+  /// - [isShort]: Whether the header is in a compact layout.
+  /// - [entryModeButton]: An optional button to toggle the entry mode.
   const DatePickerHeader({
     super.key,
     required this.helpText,
@@ -455,18 +483,25 @@ class DatePickerHeader extends StatelessWidget {
   static const double _datePickerHeaderPortraitHeight = 120.0;
   static const double _headerPaddingLandscape = 16.0;
 
+  /// The help text displayed at the top of the header.
   final String helpText;
 
+  /// The title text displayed in the header.
   final String titleText;
 
+  /// An optional semantic label for the title text.
   final String? titleSemanticsLabel;
 
+  /// The style to apply to the title text.
   final TextStyle? titleStyle;
 
+  /// The orientation of the header (portrait or landscape).
   final Orientation orientation;
 
+  /// Whether the header is in a compact layout.
   final bool isShort;
 
+  /// An optional button to toggle the entry mode.
   final Widget? entryModeButton;
 
   @override
@@ -569,6 +604,15 @@ class DatePickerHeader extends StatelessWidget {
   }
 }
 
+/// Displays a Material-style date range picker dialog.
+/// This function shows a dialog that allows the user to select a date range
+/// using a Nepali calendar. It supports both calendar and input modes
+/// for date selection.
+/// - [context]: The build context to display the dialog.
+/// - [initialDateRange]: The initially selected date range in the dialog.
+/// - [firstDate]: The earliest selectable date.
+/// - [lastDate]: The latest selectable date.
+/// - [currentDate]: The current date, defaults to today if not provided.
 Future<NepaliDateTimeRange?> showMaterialDateRangePicker({
   required BuildContext context,
   NepaliDateTimeRange? initialDateRange,
@@ -1071,7 +1115,9 @@ const double _horizontalPadding = 8.0;
 const double _maxCalendarWidthLandscape = 384.0;
 const double _maxCalendarWidthPortrait = 480.0;
 
+/// A calendar date picker widget that allows a user to select a range of dates.
 class CalendarDateRangePicker extends StatefulWidget {
+  /// Creates a calendar date range picker.
   CalendarDateRangePicker({
     super.key,
     NepaliDateTime? initialStartDate,
@@ -1106,18 +1152,25 @@ class CalendarDateRangePicker extends StatefulWidget {
         'firstDate must be on or before lastDate.');
   }
 
+  /// The initial date of the selected range.
   final NepaliDateTime? initialStartDate;
 
+  /// The initial date of the selected range.
   final NepaliDateTime? initialEndDate;
 
+  /// The first date that the user can select.
   final NepaliDateTime firstDate;
 
+  /// The last date that the user can select.
   final NepaliDateTime lastDate;
 
+  /// The current date.
   final NepaliDateTime currentDate;
 
+  /// Called when the user changes the start date of the selected range.
   final ValueChanged<NepaliDateTime>? onStartDateChanged;
 
+  /// Called when the user changes the end date of the selected range.
   final ValueChanged<NepaliDateTime>? onEndDateChanged;
 
   @override
@@ -2208,7 +2261,13 @@ class _InputDateRangePickerDialog extends StatelessWidget {
   }
 }
 
+/// A date range picker widget in which the user can input a date range.
 class InputDateRangePicker extends StatefulWidget {
+  /// Display a InputDateRangePicker in which the user can input a date range.
+  /// The [firstDate] and [lastDate] are required and must not be null.
+  /// The [initialStartDate] and [initialEndDate] default to null and must be between [firstDate] and [lastDate].
+  /// The [onStartDateChanged] and [onEndDateChanged] callbacks must be provided and must not be null.
+  /// 
   InputDateRangePicker({
     super.key,
     NepaliDateTime? initialStartDate,
@@ -2234,36 +2293,52 @@ class InputDateRangePicker extends StatefulWidget {
         firstDate = utils.dateOnly(firstDate),
         lastDate = utils.dateOnly(lastDate);
 
+  /// The initial date value of the start date field.
   final NepaliDateTime? initialStartDate;
 
+  /// The initial date value of the end date field.
   final NepaliDateTime? initialEndDate;
 
+  /// The initial date value of the start date field.
   final NepaliDateTime firstDate;
 
+  /// The initial date value of the end date field.
   final NepaliDateTime lastDate;
 
+  /// Called when the user changes the start date.
   final ValueChanged<NepaliDateTime?>? onStartDateChanged;
 
+  /// Called when the user changes the end date.
   final ValueChanged<NepaliDateTime?>? onEndDateChanged;
 
+  /// The text that is displayed a help text.
   final String? helpText;
 
+  /// The text that is displayed o qa fn the error format text.
   final String? errorFormatText;
 
+  /// The text that is displayed on the error invalid text.
   final String? errorInvalidText;
 
+  /// The text that is displayed on the error invalid range text.
   final String? errorInvalidRangeText;
 
+  /// The text that is displayed on the start field hint text.
   final String? fieldStartHintText;
 
+  /// The text that is displayed on the end field hint text.
   final String? fieldEndHintText;
 
+  /// The text that is displayed on the start field label text.
   final String? fieldStartLabelText;
 
+  /// The text that is displayed on the end field label text.
   final String? fieldEndLabelText;
 
+  /// The autofocus of the input field.
   final bool autofocus;
 
+  /// The autovalidate of the input field.
   final bool autovalidate;
 
   @override

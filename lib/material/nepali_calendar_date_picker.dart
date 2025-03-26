@@ -23,7 +23,16 @@ const double _yearPickerRowSpacing = 8.0;
 const double _subHeaderHeight = 52.0;
 const double _monthNavButtonsWidth = 108.0;
 
+/// Show a Nepali date picker in a dialog.
 class NepaliCalendarDatePicker extends StatefulWidget {
+  /// Return a widget that shows a Nepali date picker.
+  /// The [initialDate] is the initially selected date for the picker.
+  /// The [firstDate] is the first allowable date in the picker.
+  /// The [lastDate] is the last allowable date in the picker.
+  /// The [currentDate] is the current date for the picker.
+  /// The [onDateChanged] is the callback called when a new date is selected.
+  /// The [onDisplayedMonthChanged] is the callback called when the month displayed in the picker changes.
+  /// The [initialCalendarMode] is the initial [DatePickerMode] of the picker. 
   NepaliCalendarDatePicker({
     super.key,
     required NepaliDateTime initialDate,
@@ -60,26 +69,37 @@ class NepaliCalendarDatePicker extends StatefulWidget {
     );
   }
 
+  /// The initially selected date for the picker.
   final NepaliDateTime initialDate;
 
+  /// The first allowable date in the picker.
   final NepaliDateTime firstDate;
 
+  /// The last allowable date in the picker.
   final NepaliDateTime lastDate;
 
+  /// The current date for the picker.
   final NepaliDateTime currentDate;
 
+  /// The callback called when a new date is selected.
   final ValueChanged<NepaliDateTime> onDateChanged;
 
+  /// The callback called when the month displayed in the picker changes.
   final ValueChanged<NepaliDateTime>? onDisplayedMonthChanged;
 
+  /// The initial [DatePickerMode] of the picker.
   final DatePickerMode initialCalendarMode;
 
+  /// Function to provide full control over the day widget.
   final Widget Function(NepaliDateTime)? dayBuilder;
 
+  /// Decoration for the today day.
   final BoxDecoration? todayDecoration;
 
+  /// Decoration for the selected day.
   final BoxDecoration? selectedDayDecoration;
 
+  /// Function to provide the logic to disable the day.
   final common.SelectableDayPredicate? selectableDayPredicate;
 
   @override

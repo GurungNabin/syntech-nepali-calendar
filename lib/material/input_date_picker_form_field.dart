@@ -4,7 +4,20 @@ import '../syntech_nepali_calendar.dart';
 import 'date_picker_common.dart' as common;
 import 'date_utils.dart' as utils;
 
+/// A [FormField] that contains a [InputDatePicker].
 class InputDatePickerFormField extends StatefulWidget {
+  /// Creates a [FormField] that contains a [InputDatePicker].
+  /// The [firstDate] must be on or before the [lastDate].
+  /// The [lastDate] must be on or after the [firstDate].
+  /// The [initialDate] must be between the [firstDate] and the [lastDate].
+  /// If [selectableDayPredicate] is non-null, it must return `true` for the [initialDate].
+  /// [autofocus] is the initial focus state.
+  /// [errorFormatText] is the error text when the date is not entered in the correct format.
+  /// [errorInvalidText] is the error text when the date is not valid.
+  /// [fieldHintText] is the hint text for the input field.
+  /// [fieldLabelText] is the label text for the input field.
+  /// [onDateSubmitted] is the callback when the date is submitted.
+  /// [onDateSaved] is the callback when the date is saved.
   InputDatePickerFormField({
     super.key,
     NepaliDateTime? initialDate,
@@ -34,26 +47,37 @@ class InputDatePickerFormField extends StatefulWidget {
         'Provided initialDate ${this.initialDate} must satisfy provided selectableDayPredicate.');
   }
 
+  /// The initial date of the calendar.
   final NepaliDateTime? initialDate;
 
+  /// The first date that the user can select.
   final NepaliDateTime firstDate;
 
+  /// The last date that the user can select.
   final NepaliDateTime lastDate;
 
+  /// The callback when the date is submitted.
   final ValueChanged<NepaliDateTime>? onDateSubmitted;
 
+  /// The callback when the date is saved.
   final ValueChanged<NepaliDateTime>? onDateSaved;
 
+  /// Function to provide full control over which dates in the calendar can be selected.
   final common.SelectableDayPredicate? selectableDayPredicate;
 
+  /// The error text when the date is not entered in the correct format.
   final String? errorFormatText;
 
+  /// The error text when the date is not valid.
   final String? errorInvalidText;
 
+  /// The hint text for the input field.
   final String? fieldHintText;
 
+  /// The label text for the input field.
   final String? fieldLabelText;
 
+  /// The initial focus state.
   final bool autofocus;
 
   @override
