@@ -37,10 +37,10 @@ class NepaliCalendarDatePicker extends StatefulWidget {
     this.selectedDayDecoration,
     this.todayDecoration,
     this.dayBuilder,
-  }) : initialDate = utils.dateOnly(initialDate),
-       firstDate = utils.dateOnly(firstDate),
-       lastDate = utils.dateOnly(lastDate),
-       currentDate = utils.dateOnly(currentDate ?? NepaliDateTime.now()) {
+  })  : initialDate = utils.dateOnly(initialDate),
+        firstDate = utils.dateOnly(firstDate),
+        lastDate = utils.dateOnly(lastDate),
+        currentDate = utils.dateOnly(currentDate ?? NepaliDateTime.now()) {
     assert(
       !this.lastDate.isBefore(this.firstDate),
       'lastDate ${this.lastDate} must be on or after firstDate ${this.firstDate}.',
@@ -375,7 +375,8 @@ class _DatePickerModeToggleButtonState
                                     widget.currentDisplayedMonthDate,
                                   ),
                                   style: textTheme.titleSmall?.copyWith(
-                                    color: controlColor.withOpacity(0.7),
+                                    // color: controlColor.withOpacity(0.7),
+                                    color: controlColor.withValues(alpha: 0.7),
                                   ),
                                 ),
                               ),
@@ -424,9 +425,9 @@ class _MonthPicker extends StatefulWidget {
     this.todayDecoration,
     this.dayBuilder,
     this.selectableDayPredicate,
-  }) : assert(!firstDate.isAfter(lastDate)),
-       assert(!selectedDate.isBefore(firstDate)),
-       assert(!selectedDate.isAfter(lastDate));
+  })  : assert(!firstDate.isAfter(lastDate)),
+        assert(!selectedDate.isBefore(firstDate)),
+        assert(!selectedDate.isAfter(lastDate));
 
   final NepaliDateTime initialMonth;
 
@@ -658,11 +659,11 @@ class _MonthPickerState extends State<_MonthPicker> {
 
   static const Map<TraversalDirection, Duration> _directionOffset =
       <TraversalDirection, Duration>{
-        TraversalDirection.up: Duration(days: -DateTime.daysPerWeek),
-        TraversalDirection.right: Duration(days: 1),
-        TraversalDirection.down: Duration(days: DateTime.daysPerWeek),
-        TraversalDirection.left: Duration(days: -1),
-      };
+    TraversalDirection.up: Duration(days: -DateTime.daysPerWeek),
+    TraversalDirection.right: Duration(days: 1),
+    TraversalDirection.down: Duration(days: DateTime.daysPerWeek),
+    TraversalDirection.left: Duration(days: -1),
+  };
 
   Duration _dayDirectionOffset(
     TraversalDirection traversalDirection,
@@ -758,10 +759,9 @@ class _MonthPickerState extends State<_MonthPicker> {
               child: _FocusedDate(
                 date: _dayGridFocus.hasFocus ? _focusedDay : null,
                 child: Container(
-                  color:
-                      _dayGridFocus.hasFocus
-                          ? Theme.of(context).focusColor
-                          : null,
+                  color: _dayGridFocus.hasFocus
+                      ? Theme.of(context).focusColor
+                      : null,
                   child: PageView.builder(
                     key: _pageViewKey,
                     controller: _pageController,
@@ -811,9 +811,9 @@ class _DayPicker extends StatefulWidget {
     this.selectedDayDecoration,
     this.dayBuilder,
     this.selectableDayPredicate,
-  }) : assert(!firstDate.isAfter(lastDate)),
-       assert(!selectedDate.isBefore(firstDate)),
-       assert(!selectedDate.isAfter(lastDate));
+  })  : assert(!firstDate.isAfter(lastDate)),
+        assert(!selectedDate.isBefore(firstDate)),
+        assert(!selectedDate.isAfter(lastDate));
 
   final NepaliDateTime selectedDate;
 
@@ -897,17 +897,17 @@ class _DayPickerState extends State<_DayPicker> {
     final textTheme = theme.textTheme;
 
     final headerStyle = textTheme.titleSmall?.copyWith(
-      color: colorScheme.onSurface.withOpacity(0.87),
+      color: colorScheme.onSurface.withValues(alpha: 0.87),
       fontWeight: FontWeight.w600,
       letterSpacing: 0.5,
     );
 
-    final enabledDayColor = colorScheme.onSurface.withOpacity(0.87);
-    final disabledDayColor = colorScheme.onSurface.withOpacity(0.38);
+    final enabledDayColor = colorScheme.onSurface.withValues(alpha: 0.87);
+    final disabledDayColor = colorScheme.onSurface.withValues(alpha: 0.38);
     final selectedDayColor = colorScheme.onPrimary;
     final selectedDayBackground = colorScheme.primary;
     final todayColor = colorScheme.primary;
-    final borderColor = colorScheme.outline.withOpacity(0.2);
+    final borderColor = colorScheme.outline.withValues(alpha: 0.2);
 
     final year = widget.displayedMonth.year;
     final month = widget.displayedMonth.month;
@@ -931,8 +931,7 @@ class _DayPickerState extends State<_DayPicker> {
         );
       } else {
         final dayToBuild = NepaliDateTime(year, month, day);
-        final isDisabled =
-            dayToBuild.isAfter(widget.lastDate) ||
+        final isDisabled = dayToBuild.isAfter(widget.lastDate) ||
             dayToBuild.isBefore(widget.firstDate) ||
             (widget.selectableDayPredicate != null &&
                 !widget.selectableDayPredicate!(dayToBuild));
@@ -949,14 +948,13 @@ class _DayPickerState extends State<_DayPicker> {
 
         if (isSelectedDay) {
           dayColor = selectedDayColor;
-          decoration =
-              widget.selectedDayDecoration ??
+          decoration = widget.selectedDayDecoration ??
               BoxDecoration(
                 color: selectedDayBackground,
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
-                    color: selectedDayBackground.withOpacity(0.3),
+                    color: selectedDayBackground.withValues(alpha: 0.3),
                     blurRadius: 2,
                     offset: const Offset(0, 1),
                   ),
@@ -966,10 +964,9 @@ class _DayPickerState extends State<_DayPicker> {
           dayColor = disabledDayColor;
         } else if (isToday) {
           dayColor = todayColor;
-          decoration =
-              widget.todayDecoration ??
+          decoration = widget.todayDecoration ??
               BoxDecoration(
-                color: todayColor.withOpacity(0.1),
+                color: todayColor.withValues(alpha: 0.1),
                 border: Border.all(color: todayColor, width: 1),
                 borderRadius: BorderRadius.circular(4),
               );
@@ -978,52 +975,49 @@ class _DayPickerState extends State<_DayPicker> {
         Widget dayWidget = AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           decoration: decoration,
-          child:
-              widget.dayBuilder == null
-                  ? Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 2.0),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Text(
-                              NepaliNumberFormat().format(day),
-                              style: textTheme.bodyMedium?.copyWith(
-                                color: dayColor,
-                                fontWeight:
-                                    isSelectedDay || isToday
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
-                                fontSize: 15,
-                              ),
+          child: widget.dayBuilder == null
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2.0),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Text(
+                            NepaliNumberFormat().format(day),
+                            style: textTheme.bodyMedium?.copyWith(
+                              color: dayColor,
+                              fontWeight: isSelectedDay || isToday
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                              fontSize: 15,
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              right: 4.0,
-                              bottom: 2.0,
-                            ),
-                            child: Text(
-                              "$englishDate",
-                              style: textTheme.labelSmall?.copyWith(
-                                color:
-                                    isSelectedDay
-                                        ? dayColor
-                                        : dayColor.withOpacity(0.7),
-                                fontSize: 10,
-                              ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                            bottom: 2.0,
+                          ),
+                          child: Text(
+                            "$englishDate",
+                            style: textTheme.labelSmall?.copyWith(
+                              color: isSelectedDay
+                                  ? dayColor
+                                  : dayColor.withValues(alpha: 0.7),
+                              fontSize: 10,
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  )
-                  : widget.dayBuilder!(dayToBuild),
+                      ),
+                    ],
+                  ),
+                )
+              : widget.dayBuilder!(dayToBuild),
         );
 
         if (isDisabled) {
@@ -1032,8 +1026,8 @@ class _DayPickerState extends State<_DayPicker> {
           dayWidget = InkWell(
             focusNode: _dayFocusNodes[day - 1],
             onTap: () => widget.onChanged(dayToBuild),
-            splashColor: selectedDayBackground.withOpacity(0.4),
-            highlightColor: selectedDayBackground.withOpacity(0.2),
+            splashColor: selectedDayBackground.withValues(alpha: 0.4),
+            highlightColor: selectedDayBackground.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(4),
             child: Semantics(
               label:
@@ -1055,7 +1049,7 @@ class _DayPickerState extends State<_DayPicker> {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: theme.shadowColor.withOpacity(0.05),
+            color: theme.shadowColor.withValues(alpha: 0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -1162,11 +1156,11 @@ class _YearPickerState extends State<_YearPicker> {
     if (isSelected) {
       textColor = colorScheme.onPrimary;
     } else if (isDisabled) {
-      textColor = colorScheme.onSurface.withOpacity(0.38);
+      textColor = colorScheme.onSurface.withValues(alpha: 0.38);
     } else if (isCurrentYear) {
       textColor = colorScheme.primary;
     } else {
-      textColor = colorScheme.onSurface.withOpacity(0.87);
+      textColor = colorScheme.onSurface.withValues(alpha: 0.87);
     }
     final itemStyle = textTheme.bodyLarge?.apply(color: textColor);
 
@@ -1253,8 +1247,7 @@ class _YearPickerGridDelegate extends SliverGridDelegate {
 
   @override
   SliverGridLayout getLayout(SliverConstraints constraints) {
-    final tileWidth =
-        (constraints.crossAxisExtent -
+    final tileWidth = (constraints.crossAxisExtent -
             (_yearPickerColumnCount - 1) * _yearPickerRowSpacing) /
         _yearPickerColumnCount;
     return SliverGridRegularTileLayout(

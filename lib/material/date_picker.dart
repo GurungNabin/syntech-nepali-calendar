@@ -957,7 +957,7 @@ class _CalendarRangePickerDialog extends StatelessWidget {
     final headerForeground = colorScheme.brightness == Brightness.light
         ? colorScheme.primary
         : colorScheme.surface;
-    final headerDisabledForeground = headerForeground.withOpacity(0.38);
+    final headerDisabledForeground = headerForeground.withValues(alpha: 0.38);
     final startDateText = utils.formatRangeStartDate(
         localizations, selectedStartDate, selectedEndDate);
     final endDateText = utils.formatRangeEndDate(localizations,
@@ -1648,7 +1648,7 @@ class _MonthItemState extends State<_MonthItem> {
   }
 
   Color _highlightColor(BuildContext context) {
-    return Theme.of(context).colorScheme.primary.withOpacity(0.12);
+    return Theme.of(context).colorScheme.primary.withValues(alpha: 0.12);
   }
 
   void _dayFocusChanged(bool focused) {
@@ -1684,7 +1684,7 @@ class _MonthItemState extends State<_MonthItem> {
     final textDirection = Directionality.of(context);
     final day = dayToBuild.day;
 
-    final highlightColor = colorScheme.primary.withOpacity(0.15);
+    final highlightColor = colorScheme.primary.withValues(alpha: 0.15);
 
     final isDisabled = dayToBuild.isAfter(widget.lastDate) ||
         dayToBuild.isBefore(widget.firstDate);
@@ -1718,7 +1718,7 @@ class _MonthItemState extends State<_MonthItem> {
         fontSize: 15,
       );
       englishDateStyle = textTheme.labelSmall?.copyWith(
-        color: colorScheme.onPrimary.withOpacity(0.9),
+        color: colorScheme.onPrimary.withValues(alpha: 0.8),
         fontWeight: FontWeight.w500,
         fontSize: 10,
       );
@@ -1728,7 +1728,7 @@ class _MonthItemState extends State<_MonthItem> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: colorScheme.primary.withOpacity(0.25),
+            color: colorScheme.primary.withValues(alpha: 0.25),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -1753,7 +1753,7 @@ class _MonthItemState extends State<_MonthItem> {
         fontSize: 15,
       );
       englishDateStyle = textTheme.labelSmall?.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.7),
+        color: colorScheme.onSurface.withValues(alpha: 0.7),
         fontSize: 10,
       );
 
@@ -1769,11 +1769,11 @@ class _MonthItemState extends State<_MonthItem> {
       );
     } else if (isDisabled) {
       nepaliDateStyle = textTheme.bodyMedium?.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.38),
+        color: colorScheme.onSurface.withValues(alpha: 0.38),
         fontSize: 15,
       );
       englishDateStyle = textTheme.labelSmall?.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.3),
+        color: colorScheme.onSurface.withValues(alpha: 0.3),
         fontSize: 10,
       );
 
@@ -1787,7 +1787,7 @@ class _MonthItemState extends State<_MonthItem> {
         fontSize: 15,
       );
       englishDateStyle = textTheme.labelSmall?.copyWith(
-        color: colorScheme.primary.withOpacity(0.8),
+        color: colorScheme.primary.withValues(alpha: 0.8),
         fontWeight: FontWeight.w500,
         fontSize: 10,
       );
@@ -1797,7 +1797,7 @@ class _MonthItemState extends State<_MonthItem> {
           color: colorScheme.primary,
           width: 1.5,
         ),
-        color: colorScheme.primary.withOpacity(0.08),
+        color: colorScheme.primary.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(12),
       );
     } else {
@@ -1805,7 +1805,7 @@ class _MonthItemState extends State<_MonthItem> {
         fontSize: 15,
       );
       englishDateStyle = textTheme.labelSmall?.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.6),
+        color: colorScheme.onSurface.withValues(alpha: 0.6),
         fontSize: 10,
       );
 
@@ -1872,8 +1872,8 @@ class _MonthItemState extends State<_MonthItem> {
         focusNode: _dayFocusNodes[day - 1],
         onTap: () => widget.onChanged(dayToBuild),
         borderRadius: BorderRadius.circular(12),
-        splashColor: colorScheme.primary.withOpacity(0.3),
-        highlightColor: colorScheme.primary.withOpacity(0.15),
+        splashColor: colorScheme.primary.withValues(alpha: 0.3),
+        highlightColor: colorScheme.primary.withValues(alpha: 0.15),
         onFocusChange: _dayFocusChanged,
         child: dayWidget,
       );
@@ -1991,7 +1991,8 @@ class _MonthItemState extends State<_MonthItem> {
                   englishMonthText,
                   style: textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: themeData.colorScheme.onPrimary.withOpacity(0.7),
+                    color:
+                        themeData.colorScheme.onPrimary.withValues(alpha: 0.7),
                   ),
                 ),
               ],
