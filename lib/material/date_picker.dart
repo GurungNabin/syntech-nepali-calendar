@@ -456,7 +456,6 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
   }
 }
 
-
 /// This widget displays the header for the date picker, including help text,
 /// title text, and an optional entry mode toggle button.
 class DatePickerHeader extends StatelessWidget {
@@ -544,13 +543,14 @@ class DatePickerHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 30),
-                Padding(
+                Flexible(
+                    child: Padding(
                   padding: const EdgeInsetsDirectional.only(
                     start: 24,
                     end: 12,
                   ),
-                  child: Flexible(child: help),
-                ),
+                  child: help,
+                )),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(
                     start: 24,
@@ -1735,6 +1735,7 @@ class _MonthItemState extends State<_MonthItem> {
     final textTheme = theme.textTheme;
     final localizations = MaterialLocalizations.of(context);
     final textDirection = Directionality.of(context);
+
     final day = dayToBuild.day;
 
     final highlightColor = colorScheme.primary.withValues(alpha: 0.15);
@@ -1759,6 +1760,9 @@ class _MonthItemState extends State<_MonthItem> {
 
     final englishDate = dayToBuild.toDateTime();
 
+    final weekendColor = Colors.red.shade400;
+    final isSaturday = dayToBuild.weekday == 7;
+
     BoxDecoration decoration;
     TextStyle? nepaliDateStyle;
     TextStyle? englishDateStyle;
@@ -1766,12 +1770,14 @@ class _MonthItemState extends State<_MonthItem> {
 
     if (isSelectedStart || isSelectedEnd) {
       nepaliDateStyle = textTheme.bodyMedium?.copyWith(
-        color: colorScheme.onPrimary,
+        color: isSaturday ? weekendColor : colorScheme.onPrimary,
         fontWeight: FontWeight.bold,
         fontSize: 15,
       );
       englishDateStyle = textTheme.labelSmall?.copyWith(
-        color: colorScheme.onPrimary.withValues(alpha: 0.8),
+        color: isSaturday
+            ? weekendColor.withValues(alpha: 0.8)
+            : colorScheme.onPrimary.withValues(alpha: 0.8),
         fontWeight: FontWeight.w500,
         fontSize: 10,
       );
@@ -1801,12 +1807,14 @@ class _MonthItemState extends State<_MonthItem> {
       }
     } else if (isInRange) {
       nepaliDateStyle = textTheme.bodyMedium?.copyWith(
-        color: colorScheme.primary,
+        // color: colorScheme.primary,
+        color: isSaturday ? weekendColor : null,
         fontWeight: FontWeight.w500,
         fontSize: 15,
       );
       englishDateStyle = textTheme.labelSmall?.copyWith(
-        color: colorScheme.onSurface.withValues(alpha: 0.7),
+        // color: colorScheme.onSurface.withValues(alpha: 0.7),
+        color: isSaturday ? weekendColor : null,
         fontSize: 10,
       );
 
@@ -1856,9 +1864,11 @@ class _MonthItemState extends State<_MonthItem> {
     } else {
       nepaliDateStyle = textTheme.bodyMedium?.copyWith(
         fontSize: 15,
+        color: isSaturday ? weekendColor : null,
       );
       englishDateStyle = textTheme.labelSmall?.copyWith(
-        color: colorScheme.onSurface.withValues(alpha: 0.6),
+        // color: colorScheme.onSurface.withValues(alpha: 0.6),
+        color: isSaturday ? weekendColor : null,
         fontSize: 10,
       );
 
@@ -2267,7 +2277,7 @@ class InputDateRangePicker extends StatefulWidget {
   /// The [firstDate] and [lastDate] are required and must not be null.
   /// The [initialStartDate] and [initialEndDate] default to null and must be between [firstDate] and [lastDate].
   /// The [onStartDateChanged] and [onEndDateChanged] callbacks must be provided and must not be null.
-  /// 
+  ///
   InputDateRangePicker({
     super.key,
     NepaliDateTime? initialStartDate,

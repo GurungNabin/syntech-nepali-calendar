@@ -48,28 +48,32 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
                   ),
                 ),
                 onPressed: () async {
-                  if (_design == 'm') {
-                    _selectedDateTime = await showMaterialDatePicker(
-                      context: context,
-                      initialDate: _selectedDateTime ?? NepaliDateTime.now(),
-                      firstDate: NepaliDateTime(1970, 2, 5),
-                      lastDate: NepaliDateTime(2250, 11, 6),
-                      initialDatePickerMode: DatePickerMode.day,
-                    );
-                    if (_selectedDateTime != null && _showTimerPicker) {
-                      var timeOfDay = await showTimePicker(
+                  try {
+                    if (_design == 'm') {
+                      _selectedDateTime = await showMaterialDatePicker(
                         context: context,
-                        initialTime: TimeOfDay.fromDateTime(
-                          _selectedDateTime!.toDateTime(),
-                        ),
+                        initialDate: _selectedDateTime ?? NepaliDateTime.now(),
+                        firstDate: NepaliDateTime(1970, 2, 5),
+                        lastDate: NepaliDateTime(2250, 11, 6),
+                        initialDatePickerMode: DatePickerMode.day,
                       );
-                      _selectedDateTime = _selectedDateTime!.mergeTime(
-                        timeOfDay?.hour ?? 0,
-                        timeOfDay?.minute ?? 0,
-                        0,
-                      );
+                      if (_selectedDateTime != null && _showTimerPicker) {
+                        var timeOfDay = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.fromDateTime(
+                            _selectedDateTime!.toDateTime(),
+                          ),
+                        );
+                        _selectedDateTime = _selectedDateTime!.mergeTime(
+                          timeOfDay?.hour ?? 0,
+                          timeOfDay?.minute ?? 0,
+                          0,
+                        );
+                      }
+                      setState(() {});
                     }
-                    setState(() {});
+                  } catch (e) {
+                    debugPrint("An error occurred ${e.toString()}");
                   }
                 },
                 child: const Padding(

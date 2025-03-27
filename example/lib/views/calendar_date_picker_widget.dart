@@ -2,7 +2,6 @@ import 'package:flutter/material.dart' hide CalendarDatePicker;
 import 'package:syntech_nepali_calendar/material/nepali_calendar_date_picker.dart';
 import 'package:syntech_nepali_calendar/syntech_nepali_calendar.dart';
 
-
 class CalendarDatePickerWidget extends StatelessWidget {
   final ValueNotifier<NepaliDateTime> _selectedDate =
       ValueNotifier(NepaliDateTime.now());
@@ -43,6 +42,11 @@ class CalendarDatePickerWidget extends StatelessWidget {
                     _selectedDate.value.toIso8601String().substring(0, 10) ==
                         dayToBuild.toIso8601String().substring(0, 10);
 
+                final isSaturday =
+                    dayToBuild.weekday == 7; 
+                final weekendColor =
+                    Colors.red.shade400; 
+
                 return GestureDetector(
                   onLongPress: () => _showAddEventDialog(context, dayToBuild),
                   child: Stack(
@@ -61,7 +65,9 @@ class CalendarDatePickerWidget extends StatelessWidget {
                                   ?.copyWith(
                                     color: isSelectedDay
                                         ? Colors.white
-                                        : Colors.black,
+                                        : isSaturday
+                                            ? weekendColor
+                                            : Colors.black,
                                   ),
                             ),
                             Padding(
@@ -74,7 +80,9 @@ class CalendarDatePickerWidget extends StatelessWidget {
                                     ?.copyWith(
                                       color: isSelectedDay
                                           ? Colors.white
-                                          : Colors.black,
+                                          : isSaturday
+                                              ? weekendColor
+                                              : Colors.black,
                                     ),
                               ),
                             ),

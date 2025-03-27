@@ -32,7 +32,7 @@ class NepaliCalendarDatePicker extends StatefulWidget {
   /// The [currentDate] is the current date for the picker.
   /// The [onDateChanged] is the callback called when a new date is selected.
   /// The [onDisplayedMonthChanged] is the callback called when the month displayed in the picker changes.
-  /// The [initialCalendarMode] is the initial [DatePickerMode] of the picker. 
+  /// The [initialCalendarMode] is the initial [DatePickerMode] of the picker.
   NepaliCalendarDatePicker({
     super.key,
     required NepaliDateTime initialDate,
@@ -238,7 +238,7 @@ class _NepaliCalendarDatePickerState extends State<NepaliCalendarDatePicker> {
           selectableDayPredicate: widget.selectableDayPredicate,
           todayDecoration: widget.todayDecoration,
           selectedDayDecoration: widget.selectedDayDecoration,
-          dayBuilder: widget.dayBuilder,
+          dayBuilder:  widget.dayBuilder,
         );
       case DatePickerMode.year:
         return Padding(
@@ -927,6 +927,7 @@ class _DayPickerState extends State<_DayPicker> {
     final selectedDayColor = colorScheme.onPrimary;
     final selectedDayBackground = colorScheme.primary;
     final todayColor = colorScheme.primary;
+    final weekendColor = Colors.red.shade400;
     final borderColor = colorScheme.outline.withValues(alpha: 0.2);
 
     final year = widget.displayedMonth.year;
@@ -959,6 +960,10 @@ class _DayPickerState extends State<_DayPicker> {
         final isToday = utils.isSameDay(widget.currentDate, dayToBuild);
 
         final englishDate = dayToBuild.toDateTime().day;
+
+        // final weekendColor = Colors.red.shade400;
+        final isSaturday = dayToBuild.weekday == 7;
+
         BoxDecoration decoration = BoxDecoration(
           border: Border.all(color: borderColor, width: 0.4),
           borderRadius: BorderRadius.circular(2),
@@ -983,13 +988,15 @@ class _DayPickerState extends State<_DayPicker> {
         } else if (isDisabled) {
           dayColor = disabledDayColor;
         } else if (isToday) {
-          dayColor = todayColor;
+          dayColor = isSaturday ? weekendColor : todayColor;
           decoration = widget.todayDecoration ??
               BoxDecoration(
                 color: todayColor.withValues(alpha: 0.1),
                 border: Border.all(color: todayColor, width: 1),
                 borderRadius: BorderRadius.circular(4),
               );
+        } else if (isSaturday) {
+          dayColor = weekendColor;
         }
 
         Widget dayWidget = AnimatedContainer(
@@ -1007,7 +1014,7 @@ class _DayPickerState extends State<_DayPicker> {
                           child: Text(
                             NepaliNumberFormat().format(day),
                             style: textTheme.bodyMedium?.copyWith(
-                              color: dayColor,
+                              color: isSaturday ? weekendColor : dayColor,
                               fontWeight: isSelectedDay || isToday
                                   ? FontWeight.bold
                                   : FontWeight.normal,
@@ -1026,9 +1033,11 @@ class _DayPickerState extends State<_DayPicker> {
                           child: Text(
                             "$englishDate",
                             style: textTheme.labelSmall?.copyWith(
-                              color: isSelectedDay
-                                  ? dayColor
-                                  : dayColor.withValues(alpha: 0.7),
+                              color: isSaturday
+                                  ? weekendColor
+                                  : isSelectedDay
+                                      ? dayColor
+                                      : dayColor.withValues(alpha: 0.7),
                               fontSize: 10,
                             ),
                           ),

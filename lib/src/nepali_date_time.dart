@@ -1,10 +1,8 @@
-
 import 'language.dart';
 import 'nepali_date_format.dart';
 
 /// A class to represent Nepali date and time.
 extension ENepaliDateTime on DateTime {
-
   /// Converts the given [DateTime] to [NepaliDateTime].
   /// Returns the converted [NepaliDateTime].
   /// - [DateTime]: The date and time to convert.
@@ -52,7 +50,6 @@ extension ENepaliDateTime on DateTime {
   }
 }
 
-
 /// A class to represent Nepali date and time.
 class NepaliDateTime implements DateTime {
   /// Constructs a [NepaliDateTime] instance.
@@ -78,7 +75,7 @@ class NepaliDateTime implements DateTime {
   factory NepaliDateTime.fromDateTime(DateTime dateTime) {
     return dateTime.toNepaliDateTime();
   }
-  
+
   @override
   final int year;
 
@@ -262,9 +259,8 @@ class NepaliDateTime implements DateTime {
     return '$y-$m-${d}T$h:$min:$sec.$ms$us';
   }
 
-  static final RegExp _parseFormat = RegExp(
-      r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)' 
-      r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d{1,6}))?)?)?' 
+  static final RegExp _parseFormat = RegExp(r'^([+-]?\d{4,6})-?(\d\d)-?(\d\d)'
+      r'(?:[ T](\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d{1,6}))?)?)?'
       r'( ?[zZ]| ?([-+])(\d\d)(?::?(\d\d))?)?)?$');
 
   /// Formats the [NepaliDateTime] to a human-readable string.
@@ -486,12 +482,12 @@ const Map<int, List<int>> _nepaliYears = {
   2081: [366, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
   2082: [365, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
   2083: [365, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
-  2084: [366, 31, 31, 32, 31, 31, 30, 30, 30, 29, 30, 30, 30],
-  2085: [365, 31, 32, 31, 32, 30, 31, 30, 30, 29, 30, 30, 30],
+  2084: [365, 31, 31, 32, 31, 31, 30, 30, 30, 29, 30, 30, 30],
+  2085: [366, 31, 32, 31, 32, 30, 31, 30, 30, 29, 30, 30, 30],
   2086: [365, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30],
-  2087: [365, 31, 31, 32, 31, 31, 31, 30, 30, 29, 30, 30, 30],
-  2088: [366, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
-  2089: [365, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+  2087: [365, 31, 31, 32, 31, 31, 31, 30, 30, 30, 30, 30, 30],
+  2088: [366, 30, 31, 32, 32, 30, 30, 30, 30, 29, 30, 30, 30],
+  2089: [365, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30],
   2090: [365, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
   2091: [365, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
   2092: [366, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
