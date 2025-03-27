@@ -1,6 +1,6 @@
 name: syntech_nepali_calendar
 description: "A Dart library for handling Nepali calendar dates, conversions, and formatting."
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/GurungNabin/syntech-nepali-calendar
 
 environment:
