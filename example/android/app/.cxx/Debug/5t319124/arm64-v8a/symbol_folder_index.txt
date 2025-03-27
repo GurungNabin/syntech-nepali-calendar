@@ -1,0 +1,1 @@
+/home/gbpunmgx/AndroidStudioProjects/syntech-nepali-calendar/example/build/app/intermediates/cxx/Debug/5t319124/obj/arm64-v8a

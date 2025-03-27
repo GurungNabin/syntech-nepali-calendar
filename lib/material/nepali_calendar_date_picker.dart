@@ -961,7 +961,6 @@ class _DayPickerState extends State<_DayPicker> {
 
         final englishDate = dayToBuild.toDateTime().day;
 
-        // final weekendColor = Colors.red.shade400;
         final isSaturday = dayToBuild.weekday == 7;
 
         BoxDecoration decoration = BoxDecoration(

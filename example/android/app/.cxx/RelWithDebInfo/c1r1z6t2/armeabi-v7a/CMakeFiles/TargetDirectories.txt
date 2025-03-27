@@ -1,0 +1,2 @@
+/home/gbpunmgx/AndroidStudioProjects/syntech-nepali-calendar/example/android/app/.cxx/RelWithDebInfo/c1r1z6t2/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/gbpunmgx/AndroidStudioProjects/syntech-nepali-calendar/example/android/app/.cxx/RelWithDebInfo/c1r1z6t2/armeabi-v7a/CMakeFiles/rebuild_cache.dir

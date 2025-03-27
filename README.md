@@ -1,7 +1,7 @@
 # Syntech Nepali Calendar
 
 [![Pub Package](https://img.shields.io/pub/v/nepali_calendar_utils)](https://pub.dev/packages/nepali_calendar_utils)
-[![Licence](https://img.shields.io/badge/Licence-MIT-orange.svg)](https://github.com/yourusername/nepali_calendar_utils/blob/master/LICENSE)
+[![Licence](https://img.shields.io/badge/Licence-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://dart.dev/guides/language/effective-dart)
 
 A utility package for Nepali calendar operations in Flutter.  
@@ -125,7 +125,7 @@ A huge thanks to them for their contributions to the Flutter community!
 
 ## License
 ```
-MIT License
+BSD 3-Clause License
 
 Copyright 2025 Nabin Gurung and Ghan Bahadur Pun.
 
