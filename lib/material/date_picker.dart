@@ -282,11 +282,13 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
         : textTheme.headlineMedium?.copyWith(color: onPrimarySurface);
 
     final Widget actions = Container(
-      decoration: const BoxDecoration(
-          border: Border.symmetric(horizontal: BorderSide())),
+      // decoration: const BoxDecoration(
+      //     border: Border.symmetric(horizontal: BorderSide())),
       alignment: AlignmentDirectional.centerEnd,
-      constraints: const BoxConstraints(minHeight: 52.0),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      constraints: const BoxConstraints(
+        minHeight: 80.0,
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: OverflowBar(
         spacing: 8,
         children: <Widget>[

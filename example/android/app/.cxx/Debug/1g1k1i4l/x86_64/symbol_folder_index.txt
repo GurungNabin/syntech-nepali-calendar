@@ -1,0 +1,1 @@
+/home/nabin/flutter/syntech-nepali-calendar/example/build/app/intermediates/cxx/Debug/1g1k1i4l/obj/x86_64

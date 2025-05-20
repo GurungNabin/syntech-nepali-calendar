@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/home/nabin/Downloads/flutter_linux_3.24.5-stable/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/nabin/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/nabin/flutter/syntech-nepali-calendar/example/android/app/.cxx/Debug/1g1k1i4l/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/nabin/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/nabin/flutter/syntech-nepali-calendar/example/android/app/.cxx/Debug/1g1k1i4l/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

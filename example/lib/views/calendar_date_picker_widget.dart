@@ -42,10 +42,8 @@ class CalendarDatePickerWidget extends StatelessWidget {
                     _selectedDate.value.toIso8601String().substring(0, 10) ==
                         dayToBuild.toIso8601String().substring(0, 10);
 
-                final isSaturday =
-                    dayToBuild.weekday == 7; 
-                final weekendColor =
-                    Colors.red.shade400; 
+                final isSaturday = dayToBuild.weekday == 7;
+                final weekendColor = Colors.red.shade400;
 
                 return GestureDetector(
                   onLongPress: () => _showAddEventDialog(context, dayToBuild),
@@ -145,13 +143,11 @@ class CalendarDatePickerWidget extends StatelessWidget {
                     } on StateError {
                       event = null;
                     }
-
                     if (event == null) {
                       return const Center(
                         child: Text('No Events'),
                       );
                     }
-
                     return ListView.separated(
                       itemCount: event.eventTitles.length,
                       itemBuilder: (context, index) => ListTile(

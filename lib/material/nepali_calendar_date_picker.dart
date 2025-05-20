@@ -11,7 +11,7 @@ import 'date_utils.dart' as utils;
 const Duration _monthScrollDuration = Duration(milliseconds: 200);
 
 const double _dayPickerRowHeight = 42.0;
-const int _maxDayPickerRowCount = 6;
+const int _maxDayPickerRowCount = 5;
 const double _maxDayPickerHeight =
     _dayPickerRowHeight * (_maxDayPickerRowCount + 1);
 
@@ -238,7 +238,7 @@ class _NepaliCalendarDatePickerState extends State<NepaliCalendarDatePicker> {
           selectableDayPredicate: widget.selectableDayPredicate,
           todayDecoration: widget.todayDecoration,
           selectedDayDecoration: widget.selectedDayDecoration,
-          dayBuilder:  widget.dayBuilder,
+          dayBuilder: widget.dayBuilder,
         );
       case DatePickerMode.year:
         return Padding(
@@ -900,8 +900,13 @@ class _DayPickerState extends State<_DayPicker> {
         .map<Widget>(
           (label) => ExcludeSemantics(
             child: Container(
-              decoration: const BoxDecoration(
-                border: Border.symmetric(horizontal: BorderSide(width: 1)),
+              decoration: BoxDecoration(
+                border: Border.symmetric(
+                  horizontal: BorderSide(
+                    width: 0.1,
+                    style: BorderStyle.solid,
+                  ),
+                ),
               ),
               child: Center(child: Text(label, style: headerStyle)),
             ),

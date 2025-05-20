@@ -12,7 +12,6 @@ class CalendarDateRangePickerWidget extends StatefulWidget {
 
 class _CalendarDateRangePickerWidgetState
     extends State<CalendarDateRangePickerWidget> {
-
   final List<NepaliDateTime> dateRange = [
     NepaliDateTime.now(),
     NepaliDateTime.now().add(const Duration(days: 5)),
