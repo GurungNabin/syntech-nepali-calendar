@@ -20,7 +20,7 @@ const double _yearPickerPadding = 16.0;
 const double _yearPickerRowHeight = 52.0;
 const double _yearPickerRowSpacing = 8.0;
 
-const double _subHeaderHeight = 52.0;
+const double _subHeaderHeight = 56.0;
 const double _monthNavButtonsWidth = 108.0;
 
 /// Show a Nepali date picker in a dialog.

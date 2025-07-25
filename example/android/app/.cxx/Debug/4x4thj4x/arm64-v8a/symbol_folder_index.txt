@@ -1,0 +1,1 @@
+/home/synergy/flutter-project/syntech-nepali-calendar/example/build/app/intermediates/cxx/Debug/4x4thj4x/obj/arm64-v8a

@@ -282,13 +282,14 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
         : textTheme.headlineMedium?.copyWith(color: onPrimarySurface);
 
     final Widget actions = Container(
+      // color: Colors.red,
       // decoration: const BoxDecoration(
       //     border: Border.symmetric(horizontal: BorderSide())),
       alignment: AlignmentDirectional.centerEnd,
       constraints: const BoxConstraints(
-        minHeight: 80.0,
+        maxHeight: 95.0,
       ),
-      padding: EdgeInsets.symmetric(horizontal: 8),
+      // padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: OverflowBar(
         spacing: 8,
         children: <Widget>[
@@ -405,6 +406,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     );
 
     final dialogSize = _dialogSize(context) * textScaler.scale(1.0);
+
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -423,7 +425,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
               switch (orientation) {
                 case Orientation.portrait:
                   return Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       header,
@@ -433,7 +435,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                   );
                 case Orientation.landscape:
                   return Row(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       header,
@@ -442,7 +444,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
-                            Expanded(child: picker),
+                            picker,
                             actions,
                           ],
                         ),
@@ -577,7 +579,7 @@ class DatePickerHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const SizedBox(height: 30),
+                const SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: _headerPaddingLandscape,
@@ -2040,7 +2042,7 @@ class _MonthItemState extends State<_MonthItem> {
           ),
           constraints: BoxConstraints(maxWidth: maxWidth),
           height: _monthItemHeaderHeight,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           alignment: AlignmentDirectional.centerStart,
           child: ExcludeSemantics(
             child: Column(
@@ -2221,6 +2223,7 @@ class _InputDateRangePickerDialog extends StatelessWidget {
     );
 
     final Widget actions = Container(
+      color: Colors.blue,
       alignment: AlignmentDirectional.centerEnd,
       constraints: const BoxConstraints(minHeight: 52.0),
       padding: const EdgeInsets.symmetric(horizontal: 8),

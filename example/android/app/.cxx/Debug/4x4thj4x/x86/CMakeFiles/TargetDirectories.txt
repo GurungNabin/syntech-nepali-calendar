@@ -1,0 +1,2 @@
+/home/synergy/flutter-project/syntech-nepali-calendar/example/android/app/.cxx/Debug/4x4thj4x/x86/CMakeFiles/edit_cache.dir
+/home/synergy/flutter-project/syntech-nepali-calendar/example/android/app/.cxx/Debug/4x4thj4x/x86/CMakeFiles/rebuild_cache.dir

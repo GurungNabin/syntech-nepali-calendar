@@ -27,54 +27,41 @@ class CalendarDatePickerWidget extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(),
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-            child: NepaliCalendarDatePicker(
-              initialDate: NepaliDateTime.now(),
-              firstDate: NepaliDateTime(2070),
-              lastDate: NepaliDateTime(2090),
-              onDateChanged: (date) => _selectedDate.value = date,
-              dayBuilder: (dayToBuild) {
-                final isSelectedDay =
-                    _selectedDate.value.toIso8601String().substring(0, 10) ==
-                        dayToBuild.toIso8601String().substring(0, 10);
+          Expanded(
+            child: Container(
+              // padding: const EdgeInsets.all(8),
+              decoration:
+                  BoxDecoration(border: Border.all(), color: Colors.red),
+              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              child: NepaliCalendarDatePicker(
+                initialDate: NepaliDateTime.now(),
+                firstDate: NepaliDateTime(2070),
+                lastDate: NepaliDateTime(2090),
+                onDateChanged: (date) => _selectedDate.value = date,
+                dayBuilder: (dayToBuild) {
+                  final isSelectedDay =
+                      _selectedDate.value.toIso8601String().substring(0, 10) ==
+                          dayToBuild.toIso8601String().substring(0, 10);
 
-                final isSaturday = dayToBuild.weekday == 7;
-                final weekendColor = Colors.red.shade400;
+                  final isSaturday = dayToBuild.weekday == 7;
+                  final weekendColor = Colors.red.shade400;
 
-                return GestureDetector(
-                  onLongPress: () => _showAddEventDialog(context, dayToBuild),
-                  child: Stack(
-                    children: <Widget>[
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              NepaliUtils().language == Language.english
-                                  ? '${dayToBuild.day}'
-                                  : NepaliUnicode.convert('${dayToBuild.day}'),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                    color: isSelectedDay
-                                        ? Colors.white
-                                        : isSaturday
-                                            ? weekendColor
-                                            : Colors.black,
-                                  ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18),
-                              child: Text(
-                                '${dayToBuild.toDateTime().day}',
+                  return GestureDetector(
+                    onLongPress: () => _showAddEventDialog(context, dayToBuild),
+                    child: Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                NepaliUtils().language == Language.english
+                                    ? '${dayToBuild.day}'
+                                    : NepaliUnicode.convert(
+                                        '${dayToBuild.day}'),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .labelSmall
+                                    .bodyLarge
                                     ?.copyWith(
                                       color: isSelectedDay
                                           ? Colors.white
@@ -83,48 +70,64 @@ class CalendarDatePickerWidget extends StatelessWidget {
                                               : Colors.black,
                                     ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      ValueListenableBuilder<List<Event>>(
-                        valueListenable: _eventsNotifier,
-                        builder: (context, events, _) {
-                          if (events.any(
-                              (event) => _dayEquals(event.date, dayToBuild))) {
-                            return Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Container(
-                                  width: 6,
-                                  height: 6,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.purple),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 18),
+                                child: Text(
+                                  '${dayToBuild.toDateTime().day}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelSmall
+                                      ?.copyWith(
+                                        color: isSelectedDay
+                                            ? Colors.white
+                                            : isSaturday
+                                                ? weekendColor
+                                                : Colors.black,
+                                      ),
                                 ),
                               ),
-                            );
-                          }
-                          return const SizedBox.shrink();
-                        },
-                      ),
-                    ],
+                            ],
+                          ),
+                        ),
+                        ValueListenableBuilder<List<Event>>(
+                          valueListenable: _eventsNotifier,
+                          builder: (context, events, _) {
+                            if (events.any((event) =>
+                                _dayEquals(event.date, dayToBuild))) {
+                              return Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Container(
+                                    width: 6,
+                                    height: 6,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.purple),
+                                  ),
+                                ),
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                selectedDayDecoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                todayDecoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Colors.purple,
+                    width: 1,
                   ),
-                );
-              },
-              selectedDayDecoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              todayDecoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: Colors.purple,
-                  width: 1,
                 ),
               ),
             ),
